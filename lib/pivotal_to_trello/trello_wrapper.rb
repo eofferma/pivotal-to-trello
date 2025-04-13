@@ -17,13 +17,14 @@ module PivotalToTrello
     def create_card(list_id, pivotal_story)
       card   = get_card(list_id, pivotal_story.name, pivotal_story.description)
       card ||= begin
+        MAX_DESC_LENGTH = 16383
         puts "Creating a card for #{pivotal_story.story_type} '#{pivotal_story.name}'."
+
         card = Trello::Card.create(
-          name:    pivotal_story.name,
-          desc:    pivotal_story.description || "",
+          name: pivotal_story.name,
+          desc: pivotal_story.description&.slice(0, MAX_DESC_LENGTH) || "",
           list_id: list_id,
         )
-
         create_comments(card, pivotal_story)
         create_tasks(card, pivotal_story)
         card
