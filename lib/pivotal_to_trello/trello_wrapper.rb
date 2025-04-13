@@ -3,6 +3,8 @@
 require 'trello'
 
 module PivotalToTrello
+  MAX_DESC_LENGTH = 16383
+
   # Interface to the Trello API.
   class TrelloWrapper
     # Constructor
@@ -17,7 +19,6 @@ module PivotalToTrello
     def create_card(list_id, pivotal_story)
       card   = get_card(list_id, pivotal_story.name, pivotal_story.description)
       card ||= begin
-        MAX_DESC_LENGTH = 16383
         puts "Creating a card for #{pivotal_story.story_type} '#{pivotal_story.name}'."
 
         card = Trello::Card.create(
