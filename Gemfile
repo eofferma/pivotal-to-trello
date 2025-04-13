@@ -10,4 +10,5 @@ group :development do
   gem 'jeweler'
   gem 'rubocop'
   gem 'rubocop-performance'
+  gem 'ruby-lsp'
 end

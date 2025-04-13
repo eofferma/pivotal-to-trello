@@ -3,7 +3,7 @@
 require 'trello'
 
 module PivotalToTrello
-  MAX_DESC_LENGTH = 16383
+  MAX_DESC_LENGTH = 16_383
 
   # Interface to the Trello API.
   class TrelloWrapper
@@ -22,8 +22,8 @@ module PivotalToTrello
         puts "Creating a card for #{pivotal_story.story_type} '#{pivotal_story.name}'."
 
         card = Trello::Card.create(
-          name: pivotal_story.name,
-          desc: pivotal_story.description&.slice(0, MAX_DESC_LENGTH) || "",
+          name:    pivotal_story.name,
+          desc:    pivotal_story.description&.slice(0, MAX_DESC_LENGTH) || '',
           list_id: list_id,
         )
         create_comments(card, pivotal_story)
