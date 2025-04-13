@@ -20,7 +20,7 @@ module PivotalToTrello
         puts "Creating a card for #{pivotal_story.story_type} '#{pivotal_story.name}'."
         card = Trello::Card.create(
           name:    pivotal_story.name,
-          desc:    pivotal_story.description,
+          desc:    pivotal_story.description || "",
           list_id: list_id,
         )
 
