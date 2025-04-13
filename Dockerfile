@@ -2,7 +2,8 @@ FROM ruby:2.6
 
 MAINTAINER "Dave Perrett" https://github.com/Dockerfile
 
-RUN gem install bundler
+RUN gem install bundler -v 2.4.22
+
 
 # Prepare
 RUN mkdir /app
